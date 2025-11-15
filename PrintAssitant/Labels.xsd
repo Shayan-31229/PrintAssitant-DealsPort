@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Labels" targetNamespace="http://tempuri.org/Labels.xsd" xmlns:mstns="http://tempuri.org/Labels.xsd" xmlns="http://tempuri.org/Labels.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Labels" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Labels" msprop:Generator_UserDSName="Labels">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtLabels" msprop:Generator_UserTableName="dtLabels" msprop:Generator_RowEvArgName="dtLabelsRowChangeEvent" msprop:Generator_TableVarName="tabledtLabels" msprop:Generator_TablePropName="dtLabels" msprop:Generator_RowDeletingName="dtLabelsRowDeleting" msprop:Generator_RowChangingName="dtLabelsRowChanging" msprop:Generator_RowEvHandlerName="dtLabelsRowChangeEventHandler" msprop:Generator_RowDeletedName="dtLabelsRowDeleted" msprop:Generator_TableClassName="dtLabelsDataTable" msprop:Generator_RowChangedName="dtLabelsRowChanged" msprop:Generator_RowClassName="dtLabelsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PurchaseID" msprop:Generator_ColumnVarNameInTable="columnPurchaseID" msprop:Generator_ColumnPropNameInRow="PurchaseID" msprop:Generator_ColumnPropNameInTable="PurchaseIDColumn" msprop:Generator_UserColumnName="PurchaseID" type="xs:int" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:int" minOccurs="0" />
+              <xs:element name="Barcode" msprop:Generator_ColumnVarNameInTable="columnBarcode" msprop:Generator_ColumnPropNameInRow="Barcode" msprop:Generator_ColumnPropNameInTable="BarcodeColumn" msprop:Generator_UserColumnName="Barcode" type="xs:string" minOccurs="0" />
+              <xs:element name="SalePrice" msprop:Generator_ColumnVarNameInTable="columnSalePrice" msprop:Generator_ColumnPropNameInRow="SalePrice" msprop:Generator_ColumnPropNameInTable="SalePriceColumn" msprop:Generator_UserColumnName="SalePrice" type="xs:int" minOccurs="0" />
+              <xs:element name="ModelName" msprop:Generator_ColumnVarNameInTable="columnModelName" msprop:Generator_ColumnPropNameInRow="ModelName" msprop:Generator_ColumnPropNameInTable="ModelNameColumn" msprop:Generator_UserColumnName="ModelName" type="xs:string" minOccurs="0" />
+              <xs:element name="SizeTitle" msprop:Generator_ColumnVarNameInTable="columnSizeTitle" msprop:Generator_ColumnPropNameInRow="SizeTitle" msprop:Generator_ColumnPropNameInTable="SizeTitleColumn" msprop:Generator_UserColumnName="SizeTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" type="xs:string" minOccurs="0" />
+              <xs:element name="SalePercentage" msprop:Generator_ColumnVarNameInTable="columnSalePercentage" msprop:Generator_ColumnPropNameInRow="SalePercentage" msprop:Generator_ColumnPropNameInTable="SalePercentageColumn" msprop:Generator_UserColumnName="SalePercentage" type="xs:int" minOccurs="0" />
+              <xs:element name="CompanyName" msprop:Generator_ColumnVarNameInTable="columnCompanyName" msprop:Generator_ColumnPropNameInRow="CompanyName" msprop:Generator_ColumnPropNameInTable="CompanyNameColumn" msprop:Generator_UserColumnName="CompanyName" type="xs:string" minOccurs="0" />
+              <xs:element name="BarcodeImage" msprop:Generator_ColumnVarNameInTable="columnBarcodeImage" msprop:Generator_ColumnPropNameInRow="BarcodeImage" msprop:Generator_ColumnPropNameInTable="BarcodeImageColumn" msprop:Generator_UserColumnName="BarcodeImage" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="RecID" msprop:Generator_ColumnVarNameInTable="columnRecID" msprop:Generator_ColumnPropNameInRow="RecID" msprop:Generator_ColumnPropNameInTable="RecIDColumn" msprop:Generator_UserColumnName="RecID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

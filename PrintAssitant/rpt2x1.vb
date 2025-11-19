@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class rpt2x1Labels
+Public Class rpt2x1
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class rpt2x1Labels
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "rpt2x1Labels.rpt"
+            Return "rpt2x1.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class rpt2x1Labels
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "PrintAssitant.rpt2x1Labels.rpt"
+            Return "PrintAssitant.rpt2x1.rpt"
         End Get
         Set
             'Do nothing
@@ -174,7 +174,7 @@ Public Class rpt2x1Labels
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class Cachedrpt2x1Labels
+Public Class Cachedrpt2x1
     Inherits Component
     Implements ICachedReport
     
@@ -216,7 +216,7 @@ Public Class Cachedrpt2x1Labels
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As rpt2x1Labels = New rpt2x1Labels()
+        Dim rpt As rpt2x1 = New rpt2x1()
         rpt.Site = Me.Site
         Return rpt
     End Function

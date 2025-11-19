@@ -47,26 +47,26 @@ Public NotInheritable Class Simple3Des
     End Using
   End Function
 
-  Public Function DecryptData(ByVal encryptedtext As String) As String
-    If String.IsNullOrEmpty(encryptedtext) Then Return ""
-    Dim encryptedBytes As Byte() = Convert.FromBase64String(encryptedtext)
+    Public Function DecryptData(ByVal input As String) As String
+        If String.IsNullOrWhiteSpace(input) Then Return ""
 
-    Using ms As MemoryStream = New MemoryStream()
-
-      Using decStream As CryptoStream = New CryptoStream(ms, TripleDes.CreateDecryptor(), CryptoStreamMode.Write)
-        decStream.Write(encryptedBytes, 0, encryptedBytes.Length)
-
+        ' Try to detect Base64
         Try
-          decStream.FlushFinalBlock()
-        Catch ex As Exception
-          Console.WriteLine(ex.Message)
-          Return String.Empty
-        End Try
+            Dim encryptedBytes As Byte() = Convert.FromBase64String(input)
 
-        Return Encoding.Unicode.GetString(ms.ToArray())
-      End Using
-    End Using
-  End Function
+            Using ms As New MemoryStream()
+                Using decStream As New CryptoStream(ms, TripleDes.CreateDecryptor(), CryptoStreamMode.Write)
+                    decStream.Write(encryptedBytes, 0, encryptedBytes.Length)
+                    decStream.FlushFinalBlock()
+                    Return Encoding.Unicode.GetString(ms.ToArray())
+                End Using
+            End Using
+
+        Catch
+            ' Not Base64 or decryption failed → return original plain text
+            Return input
+        End Try
+    End Function
 
   Public Function DecryptDataTest(ByVal encryptedtext As String) As String
     If String.IsNullOrEmpty(encryptedtext) Then Return ""

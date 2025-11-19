@@ -56,10 +56,11 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("cjUsPIY8zTIvGwQvOiRKUOV57by8rf3NqpL0eK8XZZQlkYAb9Iw8PqfouUZoqYcmDIpzDeAUfiLwar5y6"& _ 
-            "soAc86+ckBz4u2GUwRdZbK62Vsh7+PP9E2izTviBQ/t0+VcOOC8cKjBDcB4mqngHLAc2iUoRusqaAAvX"& _ 
-            "MfiB8I3WR3cV5Af7ttYuq4XlMI7Da85VC6T5lYnuvfCElqFYyhQmMtBy+lmMyEZL1lOFuOhNRDKFYV4V"& _ 
-            "Oh6PawPP0vSmkqsEYGIAIq9SS8=")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("cjUsPIY8zTIvGwQvOiRKUOV57by8rf3NqpL0eK8XZZQlkYAb9Iw8PqfouUZoqYcmDIpzDeAUfiI6p66yw"& _ 
+            "XttZHlidGKYtAZKyCh7NtGR/vCXMg1WuSD/tXlGKnOMk7y5sC4BveMzfG+ns9yIcvHsB2DvMAnJ09JSr"& _ 
+            "7oDgLdOSSXg32/3/oQiWBWeXWz+Y6MDeZSCW8whLY0xfg3loEvja8WDvGgo0CPEchtwRM36IG+RZlfdq"& _ 
+            "KmsHIXGEDPjwE0bZ1QXsz8sF4kPOANdnHHSDWYPRibuoPjywsnJtSql1d5SgdXmSV1HOT/nSXwF+fP6a"& _ 
+            "38z0J8wmgM3Oou+z2+pRUlmjDtOCaExa1M0OviaHuaHLqqXAH0fhQ==")>  _
         Public Property Server() As String
             Get
                 Return CType(Me("Server"),String)

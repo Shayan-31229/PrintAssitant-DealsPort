@@ -72,38 +72,43 @@ Public Class frmMain
   End Sub
 
   Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-    Using Con As New SqlConnection(ConStr)
-      Using Cmd = Con.CreateCommand()
-        Cmd.CommandText = "spGetDataForLabels"
-        Cmd.CommandType = CommandType.StoredProcedure
-        Cmd.Parameters.AddWithValue("@PurchaseID", Val(TextBox1.Text.Trim))
-        Dim dAdapter As New SqlDataAdapter(Cmd)
-        Dim dTable As New DataTable
-        dAdapter.Fill(dTable)
-        If grdMain.Columns(0).Name <> "checkBoxColumn" Then
-          Dim checkBoxColumn As DataGridViewCheckBoxColumn = New DataGridViewCheckBoxColumn()
+        Try
+            Using Con As New SqlConnection(ConStr)
+                Using Cmd = Con.CreateCommand()
+                    Cmd.CommandText = "spGetDataForLabels"
+                    Cmd.CommandType = CommandType.StoredProcedure
+                    Cmd.Parameters.AddWithValue("@PurchaseID", Val(TextBox1.Text.Trim))
+                    Dim dAdapter As New SqlDataAdapter(Cmd)
+                    Dim dTable As New DataTable
+                    dAdapter.Fill(dTable)
+                    If grdMain.Columns(0).Name <> "checkBoxColumn" Then
+                        Dim checkBoxColumn As DataGridViewCheckBoxColumn = New DataGridViewCheckBoxColumn()
 
-          checkBoxColumn.HeaderText = ""
-          checkBoxColumn.Width = 40
-          checkBoxColumn.Name = "checkBoxColumn"
-          dTable.Columns.Remove("BarcodeImage")
+                        checkBoxColumn.HeaderText = ""
+                        checkBoxColumn.Width = 40
+                        checkBoxColumn.Name = "checkBoxColumn"
+                        dTable.Columns.Remove("BarcodeImage")
 
-          dTable.Columns.Add("BarcodeImage", GetType(Byte()))
+                        dTable.Columns.Add("BarcodeImage", GetType(Byte()))
 
-          grdMain.DataSource = dTable
-          grdMain.Columns.Insert(0, checkBoxColumn)
-        End If
+                        grdMain.DataSource = dTable
+                        grdMain.Columns.Insert(0, checkBoxColumn)
+                    End If
 
-        For Each row As DataGridViewRow In grdMain.Rows
-          row.Cells("checkBoxColumn").Value = True
-        Next
+                    For Each row As DataGridViewRow In grdMain.Rows
+                        row.Cells("checkBoxColumn").Value = True
+                    Next
 
-        For Each row As DataRow In dTable.Rows
-          Dim text As String = row("Barcode").ToString() ' Replace with the column name containing the text
-          row("BarcodeImage") = GenerateBarcodeImage(text)
-        Next
-      End Using
-    End Using
+                    For Each row As DataRow In dTable.Rows
+                        Dim text As String = row("Barcode").ToString() ' Replace with the column name containing the text
+                        row("BarcodeImage") = GenerateBarcodeImage(text)
+                    Next
+                End Using
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Alert...")
+        End Try
+
   End Sub
 
 
@@ -172,9 +177,9 @@ Public Class frmMain
 
     Select Case ComboBox1.SelectedIndex
       Case 0  ' 3x2
-        GenerateReport()
+                Generate2x1Report()
       Case 1  '2x1
-        Generate2x1Report()
+                GenerateReport()
     End Select
 
 
@@ -226,7 +231,7 @@ Public Class frmMain
     Dim reportDataSet As DataSet = LoadDataIntoDataSet(selectedData) ' Load selected rows into dataset
 
     ' Create and configure the Crystal Report
-    Dim report As New rpt2x1Labels ' Replace with your report class name
+        Dim report As New rpt2x1Labels ' Replace with your report class name
     report.SetDataSource(reportDataSet)
 
     ' Show the report in a Crystal Report Viewer
@@ -236,8 +241,31 @@ Public Class frmMain
 
 
   Private Function LoadDataIntoDataSet(selectedData As DataTable) As DataSet
-    Dim ds As New Labels ' Replace with the name of your dataset
-    ds.Tables(0).Merge(selectedData) ' Merge the selected data into the dataset table
+        Dim ds As New Labels ' Replace with the name of your dataset
+        Dim temp As New DataTable
+        For Each col As DataColumn In ds.Tables(0).Columns
+            temp.Columns.Add(col.ColumnName, col.DataType)
+        Next
+
+        ' Copy and convert rows
+
+        For Each row As DataRow In selectedData.Rows
+            Dim newRow As DataRow = temp.NewRow()
+            For Each col As DataColumn In temp.Columns
+                If row.Table.Columns.Contains(col.ColumnName) Then
+                    Dim value = row(col.ColumnName)
+                    If value IsNot DBNull.Value Then
+                        ' Convert the value to the target column type
+                        newRow(col.ColumnName) = Convert.ChangeType(value, col.DataType)
+                    End If
+                End If
+            Next
+            temp.Rows.Add(newRow)
+        Next
+
+        ' Merge safely
+        ds.Tables(0).Merge(temp)
+        'ds.Tables(0).Merge(selectedData) ' Merge the selected data into the dataset table
     Return ds
   End Function
 
@@ -246,4 +274,8 @@ Public Class frmMain
     Me.Hide()
     frmIndividulalPrint.Show()
   End Sub
+
+    Private Sub frmMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        End
+    End Sub
 End Class
